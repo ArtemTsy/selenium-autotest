@@ -1,9 +1,8 @@
 package com.herokuapp.pages;
 
 import com.herokuapp.base.TestBase;
+import com.herokuapp.props.GlobalProps;
 import io.qameta.allure.Step;
-import org.openqa.selenium.By;
-import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.testng.Assert;
@@ -33,8 +32,8 @@ public class LoginPage {
     }
 
     @Step("Get error message")
-    public void getErrorMessage() {
-        errorMessage.getText();
+    public String getErrorMessage() {
+        return errorMessage.getText();
     }
 
     @Step("Click sign in button")
@@ -42,7 +41,15 @@ public class LoginPage {
         signInButton.click();
     }
 
-    public void verifyElementPresent(String text) {
-        Assert.assertTrue(TestBase.getDriver().findElement(By.linkText(text)).isDisplayed(), text + " is present");
+    @Step("Navigate to login page")
+    public void navigateToLoginPage() {
+        TestBase.getDriver().navigate().to(GlobalProps.URL_Login);
+    }
+
+    @Step("Verify error message")
+    public void verifyErrorMessage(String textMessage) {
+
+        Assert.assertTrue(errorMessage.isDisplayed());
+        Assert.assertTrue(getErrorMessage().contains(textMessage));
     }
 }

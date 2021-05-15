@@ -3,17 +3,7 @@
     <!--<parameter name="properties" value="config.properties"/>-->
     <test name="Selenium Login Test">
         <classes>
-
-        </classes>
-    </test>
-    <test name="Selenium Hover Test">
-        <classes>
-
-        </classes>
-    </test>
-    <test name="Selenium Tables Test">
-        <classes>
-
+            <class name="com.herokuapp.LoginTest"></class>
         </classes>
     </test>
 </suite>
