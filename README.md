@@ -15,6 +15,12 @@ Project is created with:
 * Allure version: 2.13.3
 	
 ## Setup
+Use Git Bash for cloning repositories in your device:
+
+```
+$ git clone 
+```
+
 From the project directory run tests with git:
 
 ```
