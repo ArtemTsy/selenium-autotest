@@ -20,8 +20,8 @@ public class TablesTest extends ParentTest {
 
         //positive scenarios
         tablesPage.navigateToTablesPage();
-        tablesPage.sortingTableByLastName(SortingOption.ALPHABET);
-        tablesPage.verifySortingTableByLastName(SortingOption.ALPHABET);
+        tablesPage.sortingTableByLastName(SortingOption.ASCENDING);
+        tablesPage.verifySortingTableByLastName(SortingOption.ASCENDING);
     }
 
     @Epic("Тесты веб-приложения herokuapp")
@@ -34,8 +34,8 @@ public class TablesTest extends ParentTest {
 
         //negative scenarios
         tablesPage.navigateToTablesPage();
-        tablesPage.sortingTableByLastName(SortingOption.REVERSE_ALPHABET);
-        tablesPage.verifySortingTableByLastName(SortingOption.ALPHABET);
+        tablesPage.sortingTableByLastName(SortingOption.DESCENDING);
+        tablesPage.verifySortingTableByLastName(SortingOption.ASCENDING);
     }
 
     @Epic("Тесты веб-приложения herokuapp")
@@ -48,8 +48,8 @@ public class TablesTest extends ParentTest {
 
         //positive scenarios
         tablesPage.navigateToTablesPage();
-        tablesPage.sortingTableByLastName(SortingOption.REVERSE_ALPHABET);
-        tablesPage.verifySortingTableByLastName(SortingOption.REVERSE_ALPHABET);
+        tablesPage.sortingTableByLastName(SortingOption.DESCENDING);
+        tablesPage.verifySortingTableByLastName(SortingOption.DESCENDING);
     }
 
     @Epic("Тесты веб-приложения herokuapp")
@@ -62,8 +62,8 @@ public class TablesTest extends ParentTest {
 
         //negative scenarios
         tablesPage.navigateToTablesPage();
-        tablesPage.sortingTableByLastName(SortingOption.ALPHABET);
-        tablesPage.verifySortingTableByLastName(SortingOption.REVERSE_ALPHABET);
+        tablesPage.sortingTableByLastName(SortingOption.ASCENDING);
+        tablesPage.verifySortingTableByLastName(SortingOption.DESCENDING);
     }
 
     @Epic("Тесты веб-приложения herokuapp")
@@ -76,7 +76,7 @@ public class TablesTest extends ParentTest {
 
         //positive scenarios
         tablesPage.navigateToTablesPage();
-        tablesPage.sortingTableByFirstName(SortingOption.ALPHABET);
+        tablesPage.sortingTableByFirstName(SortingOption.ASCENDING);
         tablesPage.verifySortingTableByLastName(SortingOption.NOT_SORTING);
     }
 
@@ -90,7 +90,7 @@ public class TablesTest extends ParentTest {
 
         //negative scenarios
         tablesPage.navigateToTablesPage();
-        tablesPage.sortingTableByLastName(SortingOption.REVERSE_ALPHABET);
+        tablesPage.sortingTableByLastName(SortingOption.DESCENDING);
         tablesPage.verifySortingTableByLastName(SortingOption.NOT_SORTING);
     }
 

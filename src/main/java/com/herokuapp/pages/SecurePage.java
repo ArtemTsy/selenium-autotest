@@ -22,7 +22,7 @@ public class SecurePage {
     @Step("Verify success login")
     public void verifySuccessLogIn() {
 
-        Assert.assertEquals(driver.getCurrentUrl(), URLOption.SECURE_PAGE.getAttribute());
+        Assert.assertEquals(driver.getCurrentUrl(), URLOption.SECURE_PAGE.getUrl());
         Assert.assertTrue(successMessage.isDisplayed());
     }
 }

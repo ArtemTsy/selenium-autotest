@@ -32,7 +32,7 @@ public class TablesPage {
 
     @Step("Navigate to tables page")
     public void navigateToTablesPage() {
-        driver.navigate().to(URLOption.TABLES_PAGE.getAttribute());
+        driver.navigate().to(URLOption.TABLES_PAGE.getUrl());
     }
 
     @Step("Verify table sorting with {sortingOption}")
@@ -50,44 +50,43 @@ public class TablesPage {
                 .map(WebElement::getText)
                 .collect(Collectors.toList());
 
-        if (SortingOption.REVERSE_ALPHABET == sortingOption) {
-            expectedList = lastNameElements.stream()
-                    .map(WebElement::getText).sorted(stringComparatorReversed)
-                    .collect(Collectors.toList());
-            Assert.assertEquals(actualList, expectedList);
-        }
+        switch (sortingOption) {
+            case DESCENDING:
+                expectedList = lastNameElements.stream()
+                        .map(WebElement::getText).sorted(stringComparatorReversed)
+                        .collect(Collectors.toList());
+                Assert.assertEquals(actualList, expectedList);
+                break;
 
-        if (SortingOption.ALPHABET == sortingOption) {
-            expectedList = lastNameElements.stream()
-                    .map(WebElement::getText).sorted(stringComparator)
-                    .collect(Collectors.toList());
-            Assert.assertEquals(actualList, expectedList);
-        }
+            case ASCENDING:
+                expectedList = lastNameElements.stream()
+                        .map(WebElement::getText).sorted(stringComparator)
+                        .collect(Collectors.toList());
+                Assert.assertEquals(actualList, expectedList);
+                break;
 
-        if(SortingOption.NOT_SORTING == sortingOption) {
-            Assert.assertNotEquals(lastNameElements.stream()
-                    .map(WebElement::getText).sorted(stringComparator)
-                    .collect(Collectors.toList()), actualList, "Tables sorted ascending by last name");
-            Assert.assertNotEquals(lastNameElements.stream()
-                    .map(WebElement::getText).sorted(stringComparatorReversed)
-                    .collect(Collectors.toList()), actualList, "Tables sorted descending by last name");
+            case NOT_SORTING:
+                Assert.assertNotEquals(lastNameElements.stream()
+                        .map(WebElement::getText).sorted(stringComparator)
+                        .collect(Collectors.toList()), actualList, "Tables sorted ascending by last name");
+                Assert.assertNotEquals(lastNameElements.stream()
+                        .map(WebElement::getText).sorted(stringComparatorReversed)
+                        .collect(Collectors.toList()), actualList, "Tables sorted descending by last name");
+                break;
         }
     }
 
     @Step("Sorting table by first name column with {sortingOption}")
-    public void sortingTableByFirstName(SortingOption sortingOption){
+    public void sortingTableByFirstName(SortingOption sortingOption) {
 
-        switch (sortingOption) {
-            case ALPHABET:
-                if (firstName.getAttribute("className").equals("header")) {
-                    firstName.click();
-                    break;
-                }
-                if (firstName.getAttribute("className").equals("header headerSortUp")) {
-                    firstName.click();
-                    break;
-                }
-                break;
+        if (sortingOption == SortingOption.ASCENDING) {
+            if (firstName.getAttribute("className").equals("header")) {
+                firstName.click();
+                return;
+            }
+            if (firstName.getAttribute("className").equals("header headerSortUp")) {
+                firstName.click();
+            }
         }
     }
 
@@ -95,7 +94,7 @@ public class TablesPage {
     public void sortingTableByLastName(SortingOption sortingOption) {
 
         switch (sortingOption) {
-            case ALPHABET:
+            case ASCENDING:
                 if (lastName.getAttribute("className").equals("header")) {
                     lastName.click();
                     break;
@@ -105,7 +104,7 @@ public class TablesPage {
                     break;
                 }
                 break;
-            case REVERSE_ALPHABET:
+            case DESCENDING:
                 if (lastName.getAttribute("className").equals("header")) {
                     lastName.click();
                     lastName.click();
