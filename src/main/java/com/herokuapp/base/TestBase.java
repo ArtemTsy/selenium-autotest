@@ -8,6 +8,10 @@ public class TestBase {
 
     public static WebDriver driver;
 
+    public static WebDriver getDriver() {
+        return driver;
+    }
+
     public void initialize(){
 
         WebDriverManager.chromedriver().setup();
@@ -16,8 +20,5 @@ public class TestBase {
 
     }
 
-    public static WebDriver getDriver() {
-        return driver;
-    }
 
 }

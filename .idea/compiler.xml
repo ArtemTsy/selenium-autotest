@@ -9,5 +9,8 @@
         <module name="selenium-autotest" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="selenium-autotest" target="1.8" />
+    </bytecodeTargetLevel>
   </component>
 </project>
