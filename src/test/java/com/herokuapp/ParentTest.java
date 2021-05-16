@@ -8,14 +8,12 @@ import com.herokuapp.pages.TablesPage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.annotations.AfterTest;
-import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.BeforeTest;
 
-import static com.herokuapp.base.TestBase.getDriver;
 
 public class ParentTest {
 
-    protected WebDriver driver;
+    private WebDriver driver;
     protected LoginPage loginPage;
     protected SecurePage securePage;
     protected HoversPage hoversPage;
@@ -26,25 +24,24 @@ public class ParentTest {
 
         TestBase testBase = new TestBase();
         testBase.initialize();
-
-        driver = getDriver();
+        driver = TestBase.getDriver();
 
         initPages();
     }
 
     @AfterTest
     public void closeBrowser(){
-        TestBase.driver.quit();
+        driver.quit();
     }
 
 
 
     public void initPages(){
 
-        loginPage = PageFactory.initElements(TestBase.getDriver(), LoginPage.class);
-        securePage = PageFactory.initElements(TestBase.getDriver(), SecurePage.class);
-        hoversPage = PageFactory.initElements(TestBase.getDriver(), HoversPage.class);
-        tablesPage = PageFactory.initElements(TestBase.getDriver(), TablesPage.class);
+        loginPage = PageFactory.initElements(driver, LoginPage.class);
+        securePage = PageFactory.initElements(driver, SecurePage.class);
+        hoversPage = PageFactory.initElements(driver, HoversPage.class);
+        tablesPage = PageFactory.initElements(driver, TablesPage.class);
     }
 
 }

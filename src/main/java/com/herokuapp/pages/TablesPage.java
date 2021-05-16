@@ -1,17 +1,25 @@
 package com.herokuapp.pages;
 
-import com.herokuapp.base.TestBase;
 import com.herokuapp.constant.SortingOption;
-import com.herokuapp.props.GlobalProps;
-import org.openqa.selenium.By;
+import com.herokuapp.constant.URLOption;
+import io.qameta.allure.Step;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.testng.Assert;
 
-import java.util.*;
+import java.util.Comparator;
+import java.util.List;
 import java.util.stream.Collectors;
 
+
 public class TablesPage {
+
+    private WebDriver driver;
+
+    public TablesPage(WebDriver driver) {
+        this.driver = driver;
+    }
 
     @FindBy(xpath = "//*[@id='table2']/tbody/tr/td[contains(@class, 'last-name')]")
     private List<WebElement> lastNameElements;
@@ -19,63 +27,91 @@ public class TablesPage {
     @FindBy(xpath = "//*[@id='table2']/thead/tr/th[1]")
     private WebElement lastName;
 
+    @FindBy(xpath = "//*[@id='table2']/thead/tr/th[2]")
+    private WebElement firstName;
 
-    public void navigateToTablesPage(){
-        TestBase.getDriver().navigate().to(GlobalProps.URL_Tables);
+    @Step("Navigate to tables page")
+    public void navigateToTablesPage() {
+        driver.navigate().to(URLOption.TABLES_PAGE.getAttribute());
     }
 
-    Comparator<String> stringComparatorReversed = Comparator
-            .comparing(String::toString).reversed();
+    @Step("Verify table sorting with {sortingOption}")
+    public void verifySortingTableByLastName(SortingOption sortingOption) {
 
-    Comparator<String> stringComparator = Comparator
-            .comparing(String::toString);
+        Comparator<String> stringComparatorReversed = Comparator
+                .comparing(String::toString).reversed();
 
+        Comparator<String> stringComparator = Comparator
+                .comparing(String::toString);
 
-    public void verifySortingTable(SortingOption sortingOption) {
-        List<String> sortedLastNameList = null;
+        List<String> expectedList = null;
 
-        if (SortingOption.REVERSE_ALPHABET == sortingOption){
-            sortedLastNameList = lastNameElements.stream()
-                    .map(WebElement::getText).sorted(stringComparatorReversed)
-                    .collect(Collectors.toList());
-        }
-
-        if (SortingOption.ALPHABET == sortingOption){
-            sortedLastNameList = lastNameElements.stream()
-                    .map(WebElement::getText).sorted(stringComparator)
-                    .collect(Collectors.toList());
-        }
-
-
-        List<String> lastNameList = lastNameElements.stream()
+        List<String> actualList = lastNameElements.stream()
                 .map(WebElement::getText)
                 .collect(Collectors.toList());
 
-        for (int i = 0; i < lastNameList.size(); i++){
-            Assert.assertEquals(sortedLastNameList.get(i), lastNameList.get(i));
+        if (SortingOption.REVERSE_ALPHABET == sortingOption) {
+            expectedList = lastNameElements.stream()
+                    .map(WebElement::getText).sorted(stringComparatorReversed)
+                    .collect(Collectors.toList());
+            Assert.assertEquals(actualList, expectedList);
+        }
+
+        if (SortingOption.ALPHABET == sortingOption) {
+            expectedList = lastNameElements.stream()
+                    .map(WebElement::getText).sorted(stringComparator)
+                    .collect(Collectors.toList());
+            Assert.assertEquals(actualList, expectedList);
+        }
+
+        if(SortingOption.NOT_SORTING == sortingOption) {
+            Assert.assertNotEquals(lastNameElements.stream()
+                    .map(WebElement::getText).sorted(stringComparator)
+                    .collect(Collectors.toList()), actualList, "Tables sorted ascending by last name");
+            Assert.assertNotEquals(lastNameElements.stream()
+                    .map(WebElement::getText).sorted(stringComparatorReversed)
+                    .collect(Collectors.toList()), actualList, "Tables sorted descending by last name");
         }
     }
 
-    public void sortingTable(SortingOption sortingOptions) {
+    @Step("Sorting table by first name column with {sortingOption}")
+    public void sortingTableByFirstName(SortingOption sortingOption){
 
-        switch (sortingOptions) {
+        switch (sortingOption) {
+            case ALPHABET:
+                if (firstName.getAttribute("className").equals("header")) {
+                    firstName.click();
+                    break;
+                }
+                if (firstName.getAttribute("className").equals("header headerSortUp")) {
+                    firstName.click();
+                    break;
+                }
+                break;
+        }
+    }
+
+    @Step("Sorting table by last name column with {sortingOption}")
+    public void sortingTableByLastName(SortingOption sortingOption) {
+
+        switch (sortingOption) {
             case ALPHABET:
                 if (lastName.getAttribute("className").equals("header")) {
                     lastName.click();
                     break;
                 }
-                if (lastName.getAttribute("className").equals("header headerSortDown")) {
+                if (lastName.getAttribute("className").equals("header headerSortUp")) {
                     lastName.click();
                     break;
                 }
                 break;
             case REVERSE_ALPHABET:
-                if(lastName.getAttribute("className").equals("header")){
+                if (lastName.getAttribute("className").equals("header")) {
                     lastName.click();
                     lastName.click();
                     break;
                 }
-                if(lastName.getAttribute("className").equals("header headerSortUp")){
+                if (lastName.getAttribute("className").equals("header headerSortDown")) {
                     lastName.click();
                     break;
                 }

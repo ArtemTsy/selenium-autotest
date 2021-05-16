@@ -1,4 +1,4 @@
-package com.herokuapp.props;
+package com.herokuapp.helpers;
 
 public class LoginProps {
 

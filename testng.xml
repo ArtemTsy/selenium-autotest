@@ -1,9 +1,18 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite name="Sequential Test Suite" >
-    <!--<parameter name="properties" value="config.properties"/>-->
     <test name="Selenium Login Test">
         <classes>
             <class name="com.herokuapp.LoginTest"></class>
+        </classes>
+    </test>
+    <test name="Selenium Hovers Test">
+        <classes>
+            <class name="com.herokuapp.HoversTest"></class>
+        </classes>
+    </test>
+    <test name="Selenium Tables Test">
+        <classes>
+            <class name="com.herokuapp.TablesTest"></class>
         </classes>
     </test>
 </suite>

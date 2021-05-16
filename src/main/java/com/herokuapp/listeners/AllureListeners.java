@@ -2,6 +2,8 @@ package com.herokuapp.listeners;
 
 import com.google.common.io.Files;
 import com.herokuapp.base.TestBase;
+import com.herokuapp.pages.LoginPage;
+import com.herokuapp.pages.TablesPage;
 import io.qameta.allure.Attachment;
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.OutputType;
@@ -36,7 +38,6 @@ public class AllureListeners extends TestListenerAdapter {
 
     @Attachment
     public static String saveLogs(String message) {
-
         return message;
     }
 }

@@ -1,13 +1,23 @@
 package com.herokuapp.pages;
 
-import com.herokuapp.base.TestBase;
-import com.herokuapp.props.GlobalProps;
+import com.herokuapp.constant.URLOption;
 import io.qameta.allure.Step;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.testng.Assert;
 
 public class LoginPage {
+
+    private WebDriver driver;
+
+    public WebDriver getDriver() {
+        return driver;
+    }
+
+    public LoginPage(WebDriver driver) {
+        this.driver = driver;
+    }
 
     @FindBy(xpath = "//input[@id='username']")
     private WebElement usernameField;
@@ -43,7 +53,7 @@ public class LoginPage {
 
     @Step("Navigate to login page")
     public void navigateToLoginPage() {
-        TestBase.getDriver().navigate().to(GlobalProps.URL_Login);
+        driver.navigate().to(URLOption.LOGIN_PAGE.getAttribute());
     }
 
     @Step("Verify error message")

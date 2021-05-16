@@ -1,14 +1,20 @@
 package com.herokuapp.pages;
 
-import com.herokuapp.base.TestBase;
-import com.herokuapp.props.GlobalProps;
+import com.herokuapp.constant.URLOption;
 import io.qameta.allure.Step;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.testng.Assert;
 
 public class HoversPage {
+
+    private WebDriver driver;
+
+    public HoversPage(WebDriver driver) {
+        this.driver = driver;
+    }
 
     @FindBy(xpath = "//*[@id='content']/div/div[1]")
     public WebElement user1Avatar;
@@ -22,19 +28,24 @@ public class HoversPage {
 
     @Step("Hovering to the user avatar")
     public void hoverOverUserAvatar(WebElement webElement){
-        Actions actions = new Actions(TestBase.getDriver());
+        Actions actions = new Actions(driver);
         actions.moveToElement(webElement).perform();
     }
 
     @Step("Navigate to hover page")
     public void navigateToHoverPage(){
-        TestBase.getDriver().navigate().to(GlobalProps.URL_Hovers);
+        driver.navigate().to(URLOption.HOVERS_PAGE.getAttribute());
     }
 
-    @Step("")
+    @Step("Verify username label is displayed")
     public void verifyUsernameLabel(WebElement webElement, String username) {
 
-        Assert.assertTrue(webElement.isDisplayed());
         Assert.assertTrue(webElement.getText().contains(username));
+    }
+
+    @Step("Verify username label is not displayed")
+    public void verifyUsernameLabelIsNotDisplayed(WebElement webElement, String username) {
+
+        Assert.assertFalse(webElement.getText().contains(username));
     }
 }
