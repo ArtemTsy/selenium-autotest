@@ -7,13 +7,13 @@ public enum URLOption {
     TABLES_PAGE("http://the-internet.herokuapp.com/tables"),
     SECURE_PAGE("http://the-internet.herokuapp.com/secure");
 
-    private final String attribute;
+    private final String url;
 
-    URLOption(String attribute) {
-        this.attribute = attribute;
+    URLOption(String url) {
+        this.url = url;
     }
 
-    public String getAttribute() {
-        return attribute;
+    public String getUrl() {
+        return url;
     }
 }

@@ -49,7 +49,7 @@ public class LoginPage {
 
     @Step("Navigate to login page")
     public void navigateToLoginPage() {
-        driver.navigate().to(URLOption.LOGIN_PAGE.getAttribute());
+        driver.navigate().to(URLOption.LOGIN_PAGE.getUrl());
     }
 
     @Step("Verify error message")
