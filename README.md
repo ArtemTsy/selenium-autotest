@@ -15,11 +15,13 @@ Project is created with:
 * Allure version: 2.13.3
 	
 ## Setup
-To run this project, install it locally using git clone:
-
-$git clone 
+From the project directory run tests with git:
 
 ```
 $ mvn clean test
+```
+After completing the test run, run allure reports:
+
+```
 $ mvn allure:serve
 ```
