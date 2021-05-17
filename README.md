@@ -13,20 +13,25 @@ Project is created with:
 * TestNG version: 6.14.2
 * Maven version: 3.6.3
 * Allure version: 2.13.3
+
+## Launch tools
+* Git Bash
+* Chrome browser v.90
+* Maven
 	
 ## Setup
-Use Git Bash for cloning repositories in your device:
+Use Git Bash for cloning repositorie to your device:
 
 ```
-$ git clone 
+$ git clone https://github.com/ArtemTsy/selenium-autotest.git
 ```
 
-From the project directory run tests with git:
+From the project directory run tests with Git Bash:
 
 ```
 $ mvn clean test
 ```
-After completing the test run, run allure reports:
+After completing the test run, launch allure reports by using command:
 
 ```
 $ mvn allure:serve
