@@ -23,7 +23,7 @@ public class ParentTest {
     public void openBrowser() {
 
         TestBase testBase = new TestBase();
-        testBase.initialize();
+        testBase.initializeWebDriver();
         driver = TestBase.getDriver();
 
         initPages();
