@@ -34,7 +34,7 @@ public class HoversPage {
 
     @Step("Navigate to hover page")
     public void navigateToHoverPage(){
-        driver.navigate().to(URLOption.HOVERS_PAGE.getAttribute());
+        driver.navigate().to(URLOption.HOVERS_PAGE.getUrl());
     }
 
     @Step("Verify username label is displayed")
