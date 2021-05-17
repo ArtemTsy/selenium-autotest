@@ -1,6 +1,7 @@
 ## Selenium Autotest
 * [General info](#general-info)
 * [Technologies](#technologies)
+* [Launch tools](#launch-tools)
 * [Setup](#setup)
 
 ## General info
@@ -36,3 +37,7 @@ After completing the test run, launch allure reports by using command:
 ```
 $ mvn allure:serve
 ```
+
+## Video with launch tests
+
+https://youtu.be/mqS7qSZqaIw
