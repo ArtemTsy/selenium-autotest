@@ -72,7 +72,7 @@ public class TablesTest extends ParentTest {
     @Story("Тест проверяет вариант сортировки, когда таблица упорядочена по колонке, отличающейся от last name(позитивный сценарий)")
     @Owner("Цымляков Артем Дмитриевич")
     @Test(priority = 3)
-    public void task5SortingTablePositive(){
+    public void task5NotSortingTablePositive(){
 
         //positive scenarios
         tablesPage.navigateToTablesPage();
@@ -86,7 +86,7 @@ public class TablesTest extends ParentTest {
     @Story("Тест проверяет вариант сортировки, когда таблица упорядочена по колонке, отличающейся от last name(негативный сценарий)")
     @Owner("Цымляков Артем Дмитриевич")
     @Test(priority = 3)
-    public void task5SortingTableNegative(){
+    public void task5NotSortingTableNegative(){
 
         //negative scenarios
         tablesPage.navigateToTablesPage();
