@@ -28,7 +28,7 @@ Use Git Bash for cloning repositorie to your device:
 $ git clone https://github.com/ArtemTsy/selenium-autotest.git
 ```
 
-From the project directory run tests with Git Bash:
+From the project directory run tests with Git Bash(master branch):
 
 ```
 $ mvn clean test
