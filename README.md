@@ -3,6 +3,7 @@
 * [Technologies](#technologies)
 * [Launch tools](#launch-tools)
 * [Setup](#setup)
+* [Video launch tests](#video-launch-tests)
 
 ## General info
 This project is simple Selenium Autotest.
@@ -38,6 +39,6 @@ After completing the test run, launch allure reports by using command:
 $ mvn allure:serve
 ```
 
-## Video with launch tests
+## Video launch tests
 
 https://youtu.be/mqS7qSZqaIw
